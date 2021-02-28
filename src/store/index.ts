@@ -9,3 +9,10 @@ export default new Vuex.Store({
   actions: {},
   modules: {}
 });
+
+const moduleNamespaces = {
+  flashMessages: "flashMessages",
+  user: "user"
+};
+
+export { moduleNamespaces };
