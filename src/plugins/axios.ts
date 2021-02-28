@@ -1,4 +1,4 @@
-import Vue from "vue";
+import _Vue from "vue";
 import axios from "axios";
 import {
   CustomAxiosRequestConfig,
@@ -117,24 +117,24 @@ client.interceptors.response.use(
   }
 );
 
-g.install = function(Vue: Vue, options: Record<string, any>) {
-  Vue.$axios = client;
-  // below is same as window
-  //   (window as any).axios = client;
-  Object.defineProperties(Vue.prototype, {
-    axios: {
-      get() {
-        return client;
-      }
-    },
-    $axios: {
-      get() {
-        return client;
-      }
-    }
-  });
-};
+export default function AxiosPlugin(Vue: typeof _Vue, options?: void): void {
+  Vue.prototype.$http = client;
+}
 
-Vue.use(MyPlugin);
-
-export default MyPlugin;
+// g.install = function(Vue: Vue, options: Record<string, any>) {
+//   Vue.$axios = client;
+//   // below is same as window
+//   //   (window as any).axios = client;
+//   Object.defineProperties(Vue.prototype, {
+//     axios: {
+//       get() {
+//         return client;
+//       }
+//     },
+//     $axios: {
+//       get() {
+//         return client;
+//       }
+//     }
+//   });
+// };
