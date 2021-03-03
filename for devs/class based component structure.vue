@@ -1,5 +1,5 @@
 <template>
-
+  <div></div>
 </template>
 
 <script lang="ts">
@@ -9,6 +9,4 @@ import { Component, Vue } from "vue-property-decorator";
 export default class YourClass extends Vue {}
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

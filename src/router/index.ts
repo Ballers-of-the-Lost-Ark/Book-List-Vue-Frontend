@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
+
 import Index from "@/views/Index.vue";
 
 Vue.use(VueRouter);
@@ -7,12 +8,18 @@ Vue.use(VueRouter);
 const routes: Array<RouteConfig> = [
   {
     path: "/",
-    name: "Index",
+    name: "index",
     component: Index
   },
   {
+    path: "/future-employers",
+    name: "future_employers",
+    // route level code-splitting
+    component: () => import("@/views/FutureEmployers.vue")
+  },
+  {
     path: "/about",
-    name: "About",
+    name: "about",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.

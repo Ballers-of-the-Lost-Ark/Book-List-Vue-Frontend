@@ -38,7 +38,9 @@ const requestHandler = (
 };
 
 const responseHandler = (
+  // eslint-disable-next-line
   response: CustomAxiosResponse<any>
+  // eslint-disable-next-line
 ): CustomAxiosResponse<any> => {
   if (response.config.showSuccess) {
     // show success message in vuex
@@ -60,8 +62,11 @@ interface UnprocessableEntity {
 }
 
 const errorHandler = (
+  // eslint-disable-next-line
   e: CustomAxiosError<any>
+  // eslint-disable-next-line
 ): Promise<CustomAxiosError<any>> => {
+  // eslint-disable-next-line
   Promise.reject({ ...e }).catch((error: CustomAxiosError<any>) => {
     // custom error handling
     if (error.config.customErrorHandling) {
@@ -100,6 +105,7 @@ client.interceptors.request.use(
     return requestHandler(request);
   },
   // error
+  // eslint-disable-next-line
   function(error: CustomAxiosError<any>) {
     return Promise.reject(error);
   }
@@ -108,33 +114,17 @@ client.interceptors.request.use(
 client.interceptors.response.use(
   // good response
   // 2XX
+  // eslint-disable-next-line
   function(response: CustomAxiosResponse<any>) {
     return responseHandler(response);
   },
   // Any status codes that falls outside the range of 2xx cause this function to trigger
+  // eslint-disable-next-line
   function(error: CustomAxiosError<any>) {
     return errorHandler(error);
   }
 );
 
-export default function AxiosPlugin(Vue: typeof _Vue, options?: void): void {
+export default function AxiosPlugin(Vue: typeof _Vue): void {
   Vue.prototype.$http = client;
 }
-
-// g.install = function(Vue: Vue, options: Record<string, any>) {
-//   Vue.$axios = client;
-//   // below is same as window
-//   //   (window as any).axios = client;
-//   Object.defineProperties(Vue.prototype, {
-//     axios: {
-//       get() {
-//         return client;
-//       }
-//     },
-//     $axios: {
-//       get() {
-//         return client;
-//       }
-//     }
-//   });
-// };

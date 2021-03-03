@@ -10,6 +10,9 @@ Vue.config.productionTip = false;
 
 Vue.use(AxiosPlugin);
 
+// for contact dialog
+export const bus = new Vue();
+
 new Vue({
   router,
   store,
